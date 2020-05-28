@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Dashboard | Weatherstation</title>
+</head>
+<script>
+  window.onload = () => {
+  setInterval(fetch_api_data, 10000);
+  }
+  const fetch_api_data = () => {
+    var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("temperature").innerHTML = this.responseText.split(" ")[1]
+      document.getElementById("humidity").innerHTML = this.responseText.split(" ")[0]
+      document.getElementById("light").innerHTML = this.responseText.split(" ")[2]
+    }
+}
+xhttp.open("GET", '/api', true);xhttp.send();
+  }
+
+
+</script>
+<body>
+    <div class="navline"></div>
+    <div class="nav">
+        <a class="center-align" href="index.php">
+            <h1>Weatherstation - LoRa</h1>
+        </a>
+    </div>
+    <div class="navbar navbar-inverse navbar-fixed-left">
+        <ul class="nav navbar-nav">
+            <li><a href="#">Temperature</a></li>
+            <li><a href="#">Humidity</a></li>
+            <li><a href="#">Light</a></li>
+            <li><a href="#">Rain</a></li>
+        </ul>
+    </div>
+    <div class="container">
+    <div class="row">
+      <h1>Dashboard</h1>
+        <div class="col-sm-5">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h2 class="title-panel-body">Temperature</h2>
+                    <p class="subtitlepanel">Degree Celcius</p>
+                    <hr>
+                    <h1 class="tempvalue" id="temperature">21.0</h1>
+                    <p class="bottombody">Refresh every 10 seconds.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h2 class="title-panel-body">Humidity</h2>
+                    <p class="subtitlepanel">Procent</p>
+                    <hr>
+                    <h1 class="tempvalue" id="humidity">48.0</h1>
+                    <p class="bottombody">Refresh every 10 seconds.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h2 class="title-panel-body">Light</h2>
+                    <p class="subtitlepanel">Lumen</p>
+                    <hr>
+                    <h1 class="tempvalue" id="light">50.0</h1>
+                    <p class="bottombody">Refresh every 10 seconds.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h2 class="title-panel-body">Rain</h2>
+                    <p class="subtitlepanel">Millimeter</p>
+                    <hr>
+                    <h1 class="tempvalue">25.0</h1>
+                    <p class="bottombody">Refresh every 10 seconds.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <div class="made-with-love">
+    Copyright © 2020
+      <a target="_blank">Lukas.</a>
+       All Rights Reserved.
+    </div>
+</body>
+</html>
